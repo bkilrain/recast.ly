@@ -1,10 +1,3 @@
-var nextVideo = (index, props) => {
-  console.log('nextVideo INDEX', index);
-  console.log('nextVideo PROPS', props);
-  console.log('nextVideo THIS', this);
-  props.context.newVideo(index);
-};
-
 var VideoList = (props) => (
   <div className="video-list media">
     {props.videos.map(function(item, index) {

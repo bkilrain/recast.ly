@@ -8,7 +8,6 @@ class App extends React.Component {
   }
 
   newVideo(index) {
-    console.log('nextVideo THIS', this, 'nextVideo INDEX', index);
     this.setState({
       currentVideo: exampleVideoData[index],
     });
