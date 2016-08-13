@@ -4,16 +4,14 @@ class App extends React.Component {
     this.state = {
       currentVideo: exampleVideoData[0],
     };
-    this.nextVideo = nextVideo.bind(this);
-   
+    
   }
 
-  nextVideo(index) {
+  newVideo(index) {
     console.log('nextVideo THIS', this, 'nextVideo INDEX', index);
     this.setState({
       currentVideo: exampleVideoData[index],
     });
-   //  this.render();
   }
 
   render() {
@@ -25,7 +23,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList context={this} videos={exampleVideoData}/>
+          <VideoList context={this.newVideo.bind(this)} videos={exampleVideoData}/>
         </div>
       </div>
     );

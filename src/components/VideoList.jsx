@@ -2,14 +2,13 @@ var nextVideo = (index, props) => {
   console.log('nextVideo INDEX', index);
   console.log('nextVideo PROPS', props);
   console.log('nextVideo THIS', this);
-  debugger;
-  props.context.nextVideo(index);
+  props.context.newVideo(index);
 };
 
 var VideoList = (props) => (
   <div className="video-list media">
     {props.videos.map(function(item, index) {
-      return <VideoListEntry video={item} key={item.id.videoId} dothis={nextVideo.bind(null, index, props)}/>;
+      return <VideoListEntry video={item} key={item.id.videoId} dothis={props.context.bind(null, index)}/>;
     })}
   </div>
 );
