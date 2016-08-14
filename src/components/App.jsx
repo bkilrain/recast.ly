@@ -1,31 +1,48 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentVideo: exampleVideoData[0],
-    };
-    
+    this.state = null;
   }
 
   newVideo(index) {
     this.setState({
-      currentVideo: exampleVideoData[index],
+      currentVideo: this.state.videos[index],
     });
   }
 
-  render() {
+  getVideos(data) {
+    console.log(data);
+    this.setState({
+      videos: data,
+      currentVideo: data[0]
+    });
+  }
 
-    return (
-      <div>
-        <Nav />
-        <div className="col-md-7">
-          <VideoPlayer video={this.state.currentVideo}/>
+  componentDidMount() {
+    console.log('componentDidMount has fired', this);
+    searchYouTube({
+      query: 'dogs',
+      max: 5,
+      key: window.YOUTUBE_API_KEY
+    }, this.getVideos.bind(this));
+  }
+
+  render() {
+    if (this.state) {
+      return (
+        <div>
+          <Nav />
+          <div className="col-md-7">
+            <VideoPlayer video={this.state.currentVideo}/>
+          </div>
+          <div className="col-md-5">
+            <VideoList context={this.newVideo.bind(this)} videos={this.state.videos}/>
+          </div>
         </div>
-        <div className="col-md-5">
-          <VideoList context={this.newVideo.bind(this)} videos={exampleVideoData}/>
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return (<div>hi, hello.</div>);
+    }
   }
 
 }
