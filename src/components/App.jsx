@@ -11,7 +11,7 @@ class App extends React.Component {
         description: 'The best cat video on the internet!',
         thumbnails: {
           default: {
-            url: 'http://www.fndvisions.org/img/cutecat.jpg',
+            url: 'http://google.com',
           }
         }
       }
@@ -36,7 +36,7 @@ class App extends React.Component {
     });
   }
 
-  componentDidMount() {}
+  componentDidMount() {
     searchYouTube({
       query: 'dogs',
       max: 5,
@@ -48,7 +48,7 @@ class App extends React.Component {
     return (
       <div>
         <Nav />
-        <div className="col-md-7 video-player">
+        <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
@@ -57,6 +57,8 @@ class App extends React.Component {
       </div>
     );
   }
+}
+
 
 
 
