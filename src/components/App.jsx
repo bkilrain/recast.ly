@@ -1,7 +1,25 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = null;
+    this.dummyData = [{
+      etag: 'L332gQTY',
+      id: {
+        videoId: '000001'
+      },
+      snippet: {
+        title: 'Cute cat video',
+        description: 'The best cat video on the internet!',
+        thumbnails: {
+          default: {
+            url: 'http://www.fndvisions.org/img/cutecat.jpg',
+          }
+        }
+      }
+    }];
+    this.state = {
+      videos: this.dummyData,
+      currentVideo: this.dummyData[0]
+    };
   }
 
   newVideo(index) {
@@ -18,8 +36,7 @@ class App extends React.Component {
     });
   }
 
-  componentDidMount() {
-    console.log('componentDidMount has fired', this);
+  componentDidMount() {}
     searchYouTube({
       query: 'dogs',
       max: 5,
@@ -28,24 +45,18 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state) {
-      return (
-        <div>
-          <Nav />
-          <div className="col-md-7">
-            <VideoPlayer video={this.state.currentVideo}/>
-          </div>
-          <div className="col-md-5">
-            <VideoList context={this.newVideo.bind(this)} videos={this.state.videos}/>
-          </div>
+    return (
+      <div>
+        <Nav />
+        <div className="col-md-7 video-player">
+          <VideoPlayer video={this.state.currentVideo}/>
         </div>
-      );
-    } else {
-      return (<div>hi, hello.</div>);
-    }
+        <div className="col-md-5">
+          <VideoList context={this.newVideo.bind(this)} videos={this.state.videos}/>
+        </div>
+      </div>
+    );
   }
-
-}
 
 
 
