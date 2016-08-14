@@ -1,5 +1,4 @@
 var searchYouTube = (options, callback) => {
-  console.log('searchYoutube called');
   var searchOptions = {
     part: 'snippet',
     key: options.key,
@@ -13,8 +12,8 @@ var searchYouTube = (options, callback) => {
     url: 'https://www.googleapis.com/youtube/v3/search', 
     type: 'GET',
     data: searchOptions,
-    success: function(data) { console.log('success', callback); callback(data.items); },
-    error: function(data) { console.log('error', data.items); }
+    success: function(data) { callback(data.items); },
+    error: function(data) { console.error('error', data.items); }
   });
 };
 

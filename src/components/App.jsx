@@ -29,11 +29,18 @@ class App extends React.Component {
   }
 
   getVideos(data) {
-    console.log(data);
     this.setState({
       videos: data,
       currentVideo: data[0]
     });
+  }
+
+  setOptionsSearch(query) {
+    searchYouTube({
+      query: query,
+      max: 5,
+      key: window.YOUTUBE_API_KEY
+    }, this.getVideos.bind(this));
   }
 
   componentDidMount() {
@@ -47,7 +54,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav search={_.debounce(this.setOptionsSearch.bind(this), 500)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
